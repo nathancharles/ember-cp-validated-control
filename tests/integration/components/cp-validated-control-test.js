@@ -10,7 +10,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it shows the error message when showValidation is true and there are errors', async function(assert) {
-    assert.expect(2);
+    assert.expect(3);
 
     const errorMessage = 'foobar should not be empty';
     const Validations = buildValidations({
@@ -20,7 +20,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       }),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -40,6 +40,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
 
     assert.dom('[data-test-error-message]').isVisible();
     assert.dom('[data-test-error-message]').hasText(errorMessage);
+    assert.dom('[data-test-error-message]').hasAttribute('aria-live', 'polite');
   });
 
   test('it does not show the error message when showValidation is false and there are errors', async function(assert) {
@@ -53,7 +54,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       }),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -85,7 +86,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       }),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -109,7 +110,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
   });
 
   test('it shows the warning message when showValidation is true and there are warnings', async function(assert) {
-    assert.expect(2);
+    assert.expect(3);
 
     const warningMessage = 'foobar should not be empty';
     const Validations = buildValidations({
@@ -120,7 +121,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       }),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -140,6 +141,9 @@ module('Integration | Component | cp-validated-control', function(hooks) {
 
     assert.dom('[data-test-warning-message]').isVisible();
     assert.dom('[data-test-warning-message]').hasText(warningMessage);
+    assert
+      .dom('[data-test-warning-message]')
+      .hasAttribute('aria-live', 'polite');
   });
 
   test('it does not show the warning message when showValidation is false and there are warnings', async function(assert) {
@@ -154,7 +158,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       }),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -187,7 +191,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       }),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -229,7 +233,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       ],
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -267,7 +271,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       }),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -304,7 +308,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       }),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -337,7 +341,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       foobar: validator('presence', true),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -373,7 +377,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       }),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -419,7 +423,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       ],
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -475,7 +479,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       ],
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
@@ -496,13 +500,21 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       </CpValidatedControl>
     `);
 
-    assert.dom('[data-test-input]').hasAttribute('aria-describedby', 'validated-control-message');
-    assert.dom('[data-test-error-message]').hasAttribute('id', 'validated-control-message');
+    assert
+      .dom('[data-test-input]')
+      .hasAttribute('aria-describedby', 'validated-control-message');
+    assert
+      .dom('[data-test-error-message]')
+      .hasAttribute('id', 'validated-control-message');
 
     this.set('testObject.foobar', null);
 
-    assert.dom('[data-test-input]').hasAttribute('aria-describedby', 'validated-control-message');
-    assert.dom('[data-test-warning-message]').hasAttribute('id', 'validated-control-message');
+    assert
+      .dom('[data-test-input]')
+      .hasAttribute('aria-describedby', 'validated-control-message');
+    assert
+      .dom('[data-test-warning-message]')
+      .hasAttribute('id', 'validated-control-message');
 
     this.set('testObject.foobar', 'yep');
 
@@ -518,7 +530,7 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       foobar: validator('presence', true),
     });
     const testObject = EmberObject.extend(Validations, {
-      foobar: null
+      foobar: null,
     });
 
     this.setProperties({
