@@ -1,0 +1,1 @@
+export { default } from 'ember-cp-validated-control/components/cp-validated-control';

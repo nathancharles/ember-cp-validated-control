@@ -1,0 +1,21 @@
+
+{{yield
+  (hash
+    isErrorVisible=this.showError
+    isWarningVisible=this.showWarning
+    isValidationVisible=this.isValidationVisible
+    ariaDescribedby=this.ariaDescribedby
+    ariaInvalid=this.showError)
+}}
+
+
+{{#if this.showError}}
+  <div id={{messageId}} data-test-error-message>
+    {{this.validations.error.message}}
+  </div>
+{{else if this.showWarning}}
+  <div id={{messageId}} data-test-warning-message>
+    {{this.validations.warning.message}}
+  </div>
+{{/if}}
+
