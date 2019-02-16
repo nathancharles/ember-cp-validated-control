@@ -334,6 +334,71 @@ module('Integration | Component | cp-validated-control', function(hooks) {
     assert.dom('[data-test-error-message]').doesNotExist();
   });
 
+  test('it sets the errorClassName when passed', async function(assert) {
+    assert.expect(1);
+
+    const Validations = buildValidations({
+      foobar: validator('presence', true),
+    });
+    const testObject = EmberObject.extend(Validations, {
+      foobar: null,
+    });
+    const customClassName = 'my-custom-class';
+
+    this.setProperties({
+      testObject: setupObject(this, testObject),
+      showValidation: true,
+      customClassName
+    });
+
+    await render(hbs`
+      <CpValidatedControl
+        @validations={{testObject.validations.attrs.foobar}}
+        @showValidation={{showValidation}}
+        @errorClassName={{customClassName}}
+        as |cvc|
+      >
+        <input type="text" name="test-input" data-test-input aria-invalid={{cvc.ariaInvalid}} value/>
+      </CpValidatedControl>
+    `);
+
+    assert.dom('[data-test-error-message]').hasClass(customClassName);
+  });
+
+  test('it sets the warningClassName when passed', async function(assert) {
+    assert.expect(1);
+
+    const Validations = buildValidations({
+      foobar: validator('presence', {
+        presence: true,
+        isWarning: true,
+      }),
+    });
+    const testObject = EmberObject.extend(Validations, {
+      foobar: null,
+    });
+    const customClassName = 'my-custom-class';
+
+    this.setProperties({
+      testObject: setupObject(this, testObject),
+      showValidation: true,
+      customClassName
+    });
+
+    await render(hbs`
+      <CpValidatedControl
+        @validations={{testObject.validations.attrs.foobar}}
+        @showValidation={{showValidation}}
+        @warningClassName={{customClassName}}
+        as |cvc|
+      >
+        <input type="text" name="test-input" data-test-input aria-invalid={{cvc.ariaInvalid}} value/>
+      </CpValidatedControl>
+    `);
+
+    assert.dom('[data-test-warning-message]').hasClass(customClassName);
+  });
+
   test('it exposes isErrorVisible for error visiblity', async function(assert) {
     assert.expect(2);
 

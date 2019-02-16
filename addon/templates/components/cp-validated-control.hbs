@@ -9,11 +9,11 @@
 
 
 {{#if this.showError}}
-  <div id={{this.ariaDescribedby}} aria-live="polite" data-test-error-message>
+  <div class={{this.errorClassName}} id={{this.ariaDescribedby}} aria-live="polite" data-test-error-message>
     {{this.validations.error.message}}
   </div>
 {{else if this.showWarning}}
-  <div id={{this.ariaDescribedby}} aria-live="polite" data-test-warning-message>
+  <div class={{this.warningClassName}} id={{this.ariaDescribedby}} aria-live="polite" data-test-warning-message>
     {{this.validations.warning.message}}
   </div>
 {{/if}}

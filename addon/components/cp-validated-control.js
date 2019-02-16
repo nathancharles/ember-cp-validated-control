@@ -12,6 +12,8 @@ import layout from '../templates/components/cp-validated-control';
  * <CpValidatedControl
  *   @validations={{model.validations.attrs.foobar}}
  *   @showValidation={{showValidation}}
+ *   @errorClassName="my-custom-error-message"
+ *   @warningClassName="my-custom-warning-message"
  *   as |cvc| >
  *   <input
  *     type="text"
