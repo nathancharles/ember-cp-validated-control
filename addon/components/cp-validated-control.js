@@ -8,6 +8,21 @@ import layout from '../templates/components/cp-validated-control';
  * This handles the visibility of validation messages for ember-cp-validations.
  * This allows any control element to be wrapped and provides state variables in the wrapped context.
  *
+ * @class CpValidatedControl
+ * @module Component
+ * @extends Ember.Component
+ *
+ * @param {ResultCollection} validations - ember-cp-validation object for the given attribute.
+ * @param {Boolean} showValidations - Flag to determine the visibility of the messages.
+ * @param {String} errorClassName - (optional) Custom class name for the error message.
+ * @param {String} warningClassName - (optional) Custom class name for the warning message.
+ *
+ * @property {Boolean} isErrorVisible - Indicates error message visibility.
+ * @property {Boolean} isWarningVisible - Indicates warning message visibility.
+ * @property {Boolean} isValidationVisible - Indicates either the error message or warning message visibility.
+ * @property {String} ariaDescribedby - The id of the message container for the aria-describedby attribute on the control.
+ * @property {Boolean} ariaInvalid - Indicates if the attribute is invalid and the error message is visibile.
+ *
  * @example ```hbs
  * <CpValidatedControl
  *   @validations={{model.validations.attrs.foobar}}
@@ -23,10 +38,6 @@ import layout from '../templates/components/cp-validated-control';
  *     value={{model.foobar}} />
  * </CpValidatedControl>
  * ```
- *
- * @class CpValidatedControl
- * @module Component
- * @extends Ember.Component
  */
 export default Component.extend({
   layout,

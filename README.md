@@ -1,8 +1,7 @@
 ember-cp-validated-control
 ==============================================================================
 
-[Short description of the addon.]
-
+A wrapper for ember-cp-validations for handling the visibility of error and warning messages, as well as providing the display state of the validations. This is also A11Y friendly by communicating message changes via [aria-live="polite"](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) and providing [aria-invalid](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-invalid_attribute) and [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute) attributes to integrate with the wrapped control.
 
 Compatibility
 ------------------------------------------------------------------------------
@@ -22,7 +21,39 @@ ember install ember-cp-validated-control
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+### Example
+```hbs
+<CpValidatedControl
+  @validations={{model.validations.attrs.foobar}}
+  @showValidation={{showValidation}}
+  @errorClassName="my-custom-error-message"
+  @warningClassName="my-custom-warning-message"
+  as |cvc| >
+  <input
+    type="text"
+    name="foobar"
+    aria-describedby={{cvc.ariaDescribedby}}
+    aria-invalid={{cvc.ariaInvalid}}
+    value={{model.foobar}} />
+</CpValidatedControl>
+```
+
+### API
+Property | Type | Description
+-------- | ---- | -----------
+validations | [ResultCollection](http://offirgolan.github.io/ember-cp-validations/docs/classes/ResultCollection.html) | ember-cp-validation object for the given attribute.
+showValidations | Boolean | Flag to determine the visibility of the messages.
+errorClassName | String | (optional) Custom class name for the error message.
+warningClassName | String | (optional) Custom class name for the warning message.
+
+### Exposed Properties
+Property | Type | Description
+-------- | ---- | -----------
+isErrorVisible | Boolean | Indicates error message visibility.
+isWarningVisible | Boolean | Indicates warning message visibility.
+isValidationVisible | Boolean | Indicates either the error message or warning message visibility.
+ariaDescribedby | String | The id of the message container for the aria-describedby attribute on the control.
+ariaInvalid | Boolean | Indicates if the attribute is invalid and the error message is visibile.
 
 Contributing
 ------------------------------------------------------------------------------
