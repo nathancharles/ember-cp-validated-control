@@ -8,7 +8,7 @@ import layout from '../templates/components/cp-validated-control';
  * This handles the visibility of validation messages for ember-cp-validations.
  * This allows any control element to be wrapped and provides state variables in the wrapped context.
  *
- * @class CpValidatedControl
+ * @name CpValidatedControl
  * @module Component
  * @extends Ember.Component
  *
