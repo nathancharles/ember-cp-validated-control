@@ -14,7 +14,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-cp-validated-control
+npm install ember-cp-validated-control
 ```
 
 
