@@ -8,9 +8,10 @@
     "ember-cp-validated-control",
     "ember-cp-validations"
   ],
-  "repository": "",
+  "homepage": "https://github.com/nathancharles/ember-cp-validated-control#readme",
+  "repository": "github:nathancharles/ember-cp-validated-control",
   "license": "MIT",
-  "author": "",
+  "author": "Nathan Cook",
   "directories": {
     "doc": "doc",
     "test": "tests"
