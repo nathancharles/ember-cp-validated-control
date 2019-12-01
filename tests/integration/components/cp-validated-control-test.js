@@ -558,28 +558,29 @@ module('Integration | Component | cp-validated-control', function(hooks) {
       <CpValidatedControl
         @validations={{testObject.validations.attrs.foobar}}
         @showValidation={{showValidation}}
-        @elementId="validated-control"
         as |cvc|
       >
         <input type="text" name="test-input" data-test-input aria-describedby={{cvc.ariaDescribedby}} value/>
       </CpValidatedControl>
     `);
 
+    const idRegexp = /ember\d{1,}-message/
+
     assert
       .dom('[data-test-input]')
-      .hasAttribute('aria-describedby', 'validated-control-message');
+      .hasAttribute('aria-describedby', idRegexp);
     assert
       .dom('[data-test-error-message]')
-      .hasAttribute('id', 'validated-control-message');
+      .hasAttribute('id', idRegexp);
 
     this.set('testObject.foobar', null);
 
     assert
       .dom('[data-test-input]')
-      .hasAttribute('aria-describedby', 'validated-control-message');
+      .hasAttribute('aria-describedby', idRegexp);
     assert
       .dom('[data-test-warning-message]')
-      .hasAttribute('id', 'validated-control-message');
+      .hasAttribute('id', idRegexp);
 
     this.set('testObject.foobar', 'yep');
 
